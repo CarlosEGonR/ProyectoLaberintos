@@ -51,6 +51,37 @@ public class Lista {
 
     }
     
+    public void eliminar_segun_elemento(Object elemento){
+        if(EsVacio()){
+            System.out.println("La lista esta vacia.");
+        }
+        else{
+            Nodo aux = pFirst;
+            if(aux.getElemento() == elemento){
+                pFirst = aux.getSiguiente();
+            }
+            else{
+                if(pLast.getElemento() == elemento){
+                    for (int i = 0; i < (size-2); i++) {
+                        aux = aux.getSiguiente();
+                    }
+                    aux.setSiguiente(null);
+                }
+                else{
+                    Nodo aux2 = pFirst.getSiguiente();
+                    while(aux2.getElemento() != elemento){
+                        aux2 = aux2.getSiguiente();
+                        aux = aux.getSiguiente();
+                    }
+                    aux2 = aux2.getSiguiente();
+                    aux.setSiguiente(aux2);
+                }         
+            }
+            size--;
+        }
+        
+    }
+    
      
 }
 

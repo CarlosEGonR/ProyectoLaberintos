@@ -74,9 +74,8 @@ public class Grafo {
     
     // Comprueba si dos vertices son adyacentes
     boolean SonAdyacentes(String a, String b) throws Exception{
-        int v1,v2;
-        v1 = BuscarNumVertice(a);
-        v2 = BuscarNumVertice(b);
+        int v1 = BuscarNumVertice(a); 
+        int v2 = BuscarNumVertice(b);
         if (v1 < 0 || v2 < 0){
             throw new Exception("El vertice no existe");
         }
@@ -88,7 +87,29 @@ public class Grafo {
     }
     
     // Comprueba si dos vertices son adyacentes por el numero de vertice
+    boolean SonAdyacentesIndex(int v1, int v2) throws Exception{
+        if(tablaAdy[v1].listAdy.existe_elemento((new Arco(v2)))){
+            return true;
+        }else{
+            return false;
+        }
     
+    }
+    
+    // Crea un nuevo arco
+    public void CrearArco(String a, String b) throws Exception{
+        if(!SonAdyacentes(a,b)){
+            int v1 = BuscarNumVertice(a);
+            int v2 = BuscarNumVertice(b);
+            if(v1 < 0 || v2 < 0){
+                throw new Exception("El vertice no existe");
+            }
+            Arco ab = new Arco(v2);
+            tablaAdy[v1].listAdy.eliminar_segun_elemento(ab);
+            
+        }
+    
+    }
     
     
 }
