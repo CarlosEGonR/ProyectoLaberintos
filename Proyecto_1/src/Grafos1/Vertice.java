@@ -9,9 +9,9 @@ package Grafos1;
  */
 public class Vertice {
     
-    String nombre;
-    int numVertice; // indice
-    Lista listAdy;
+    private String nombre;
+    private int numVertice; // indice
+    private Lista listAdy;
     
     
     // Constructor
@@ -27,25 +27,67 @@ public class Vertice {
     // Devuelve verdadero si los dos Vertices se llaman igual
     public boolean Iguales(Object d){
         Vertice dos = (Vertice) d;
-        return nombre.equals(dos.nombre);
+        return getNombre().equals(dos.getNombre());
         
     }
     
     // Indica el numero que identificara este vertice. Indice.
     public void AsignarVertice(int n){
-        numVertice = n;
+        setNumVertice(n);
        
     }
     
     // Devuelve el nombre del Vertice
     public String NombreVertice(){
-        return nombre;
+        return getNombre();
     }
     
     // Imprime el nombre y numero de Vertice
     public String Imprimir(){
-        return nombre + " (" + numVertice + ")";
+        return getNombre() + " (" + getNumVertice() + ")";
         
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the numVertice
+     */
+    public int getNumVertice() {
+        return numVertice;
+    }
+
+    /**
+     * @param numVertice the numVertice to set
+     */
+    public void setNumVertice(int numVertice) {
+        this.numVertice = numVertice;
+    }
+
+    /**
+     * @return the listAdy
+     */
+    public Lista getListAdy() {
+        return listAdy;
+    }
+
+    /**
+     * @param listAdy the listAdy to set
+     */
+    public void setListAdy(Lista listAdy) {
+        this.listAdy = listAdy;
     }
     
     
