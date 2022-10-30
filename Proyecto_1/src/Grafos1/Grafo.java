@@ -12,9 +12,9 @@ package Grafos1;
  */
 public class Grafo {
 
-    int numVertices;
-    static int maxVertices = 20;
-    Vertice[] tablaAdy; // [_,_,_,_,_]
+    private int numVertices;
+    private int maxVertices = 20;
+    private Vertice[] tablaAdy; // [_,_,_,_,_]
 
     // Constructor: Parametro: mx: maximo de vertices que va a tener el grafo
     public Grafo(int mx) {
@@ -23,21 +23,23 @@ public class Grafo {
         maxVertices = mx;
 
     }
+    
+    
 
     // Devuelve el vector
     public Vertice[] Vector() {
-        return tablaAdy;
+        return getTablaAdy();
     }
 
     
     // Devuelve la lista de adyacencia del vertice v
     public Lista ListaAdyacencia(int v) throws Exception{
 
-        if (v < 0 || v >= numVertices) {
+        if (v < 0 || v >= getNumVertices()) {
             throw new Exception("Vertice fuera de rango");
         }
         
-        return tablaAdy[v].listAdy;
+        return getTablaAdy()[v].getListAdy();
     }
 
     // Busca y devuelve la posicion del vertice, si no lo encuetra devuelve -1
@@ -45,13 +47,13 @@ public class Grafo {
         Vertice v = new Vertice(nombre);
         boolean encontrado = false;
         int i = 0;
-        while((i < numVertices) && (!encontrado)){
-            encontrado = tablaAdy[i].Iguales(v); //compara el nombre de los vertices
+        while((i < getNumVertices()) && (!encontrado)){
+            encontrado = getTablaAdy()[i].Iguales(v); //compara el nombre de los vertices
             if(!encontrado){
                 i++;
             }
         }
-        if (i < numVertices){
+        if (i < getNumVertices()){
             return i;
         }else{
             return -1;
@@ -65,9 +67,9 @@ public class Grafo {
         boolean existe = BuscarNumVertice(nombre) >= 0;
         if (!existe){
             Vertice v = new Vertice(nombre);
-            v.AsignarVertice(numVertices);
-            tablaAdy[numVertices] = v;
-            numVertices++;
+            v.AsignarVertice(getNumVertices());
+            getTablaAdy()[getNumVertices()] = v;
+            setNumVertices(getNumVertices() + 1);
         }
     
     }
@@ -79,7 +81,7 @@ public class Grafo {
         if (v1 < 0 || v2 < 0){
             throw new Exception("El vertice no existe");
         }
-        if (tablaAdy[v1].listAdy.existe_elemento(new Arco(v2))) {
+        if (getTablaAdy()[v1].getListAdy().existe_elemento(new Arco(v2))) {
             return true;
         } else{
             return false;
@@ -88,7 +90,7 @@ public class Grafo {
     
     // Comprueba si dos vertices son adyacentes por el numero de vertice
     boolean SonAdyacentesIndex(int v1, int v2) throws Exception{
-        if(tablaAdy[v1].listAdy.existe_elemento((new Arco(v2)))){
+        if(getTablaAdy()[v1].getListAdy().existe_elemento((new Arco(v2)))){
             return true;
         }else{
             return false;
@@ -105,10 +107,52 @@ public class Grafo {
                 throw new Exception("El vertice no existe");
             }
             Arco ab = new Arco(v2);
-            tablaAdy[v1].listAdy.eliminar_segun_elemento(ab);
+            getTablaAdy()[v1].getListAdy().eliminar_segun_elemento(ab);
             
         }
     
+    }
+
+    /**
+     * @return the numVertices
+     */
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    /**
+     * @param numVertices the numVertices to set
+     */
+    public void setNumVertices(int numVertices) {
+        this.numVertices = numVertices;
+    }
+
+    /**
+     * @return the maxVertices
+     */
+    public int getMaxVertices() {
+        return maxVertices;
+    }
+
+    /**
+     * @param maxVertices the maxVertices to set
+     */
+    public void setMaxVertices(int maxVertices) {
+        this.maxVertices = maxVertices;
+    }
+
+    /**
+     * @return the tablaAdy
+     */
+    public Vertice[] getTablaAdy() {
+        return tablaAdy;
+    }
+
+    /**
+     * @param tablaAdy the tablaAdy to set
+     */
+    public void setTablaAdy(Vertice[] tablaAdy) {
+        this.tablaAdy = tablaAdy;
     }
     
     
